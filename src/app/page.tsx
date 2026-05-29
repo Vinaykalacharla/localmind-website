@@ -8,6 +8,7 @@ import { OfflineWorkflowAnimation } from "../components/OfflineWorkflowAnimation
 import { AnimatedChat, AnimatedIngestion, AnimatedPrivacy, AnimatedModels, AnimatedVectorization, AnimatedVault } from "../components/AnimatedFeatures";
 import dynamic from "next/dynamic";
 import { MagneticButton } from "../components/MagneticButton";
+import { ContactSection } from "../components/ContactSection";
 
 const ArchitectureExploder = dynamic(() => import("../components/ArchitectureExploder").then(m => m.ArchitectureExploder), { ssr: false });
 const TerminalDemonstration = dynamic(() => import("../components/TerminalDemonstration").then(m => m.TerminalDemonstration), { ssr: false });
@@ -323,6 +324,9 @@ export default function Home() {
           </p>
         </motion.div>
       </section>
+
+      {/* Contact Section */}
+      <ContactSection />
 
     </main>
   );
