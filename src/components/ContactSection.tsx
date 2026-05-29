@@ -1,8 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Send, Terminal, Sparkles } from "lucide-react";
+import { Mail, Linkedin, Send, Terminal, Sparkles } from "lucide-react";
 import { useState } from "react";
+
+const GithubIcon = ({ size = 24 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.5-3.8 5.2 5.2 0 0 0 .1-3.8s-1.2-.4-3.9 1.4a13.3 13.3 0 0 0-7 0C6.2 1.6 5 2 5 2a5.2 5.2 0 0 0 .1 3.8A5.2 5.2 0 0 0 3 9.6c0 5.23 3 6.42 6 6.76a4.8 4.8 0 0 0-1 3.24v4" />
+  </svg>
+);
 
 export function ContactSection() {
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
@@ -31,7 +37,7 @@ export function ContactSection() {
     {
       title: "GitHub Developer",
       value: "github.com/Vinaykalacharla",
-      icon: <Github size={24} />,
+      icon: <GithubIcon size={24} />,
       href: "https://github.com/Vinaykalacharla",
       gradient: "from-[#333] to-[#888]"
     },
