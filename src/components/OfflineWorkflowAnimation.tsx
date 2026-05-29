@@ -132,7 +132,7 @@ export function OfflineWorkflowAnimation() {
 
                 <div style={{ color: "#1d1d1f", fontSize: "0.95rem", lineHeight: 1.6 }}>
                   <motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 12, repeat: Infinity, times: [0, 0.65, 0.7, 0.9, 1] }}>Based on the local document, the application ensures </motion.span>
-                  <motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 12, repeat: Infinity, times: [0, 0.7, 0.75, 0.9, 1], background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>Absolute Privacy</motion.span>
+                  <motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 12, repeat: Infinity, times: [0, 0.7, 0.75, 0.9, 1] }} style={{ background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>Absolute Privacy</motion.span>
                   <motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ duration: 12, repeat: Infinity, times: [0, 0.75, 0.8, 0.9, 1] }}> by running inference purely on-device without any internet connection.</motion.span>
                 </div>
               </div>
