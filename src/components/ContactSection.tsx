@@ -63,7 +63,7 @@ export function ContactSection() {
           {[
             { name: "localmindos@gmail.com", icon: <Mail size={22} />, href: "mailto:localmindos@gmail.com", color: "#ff4b4b" },
             { name: "github.com/Vinaykalacharla", icon: <GithubIcon size={22} />, href: "https://github.com/Vinaykalacharla", color: "#ffffff" },
-            { name: "linkedin.com/in/vinaykalacharla", icon: <LinkedinIcon size={22} />, href: "https://linkedin.com/in/vinaykalacharla", color: "#00a0dc" }
+            { name: "linkedin.com/in/vinay-kalacharla", icon: <LinkedinIcon size={22} />, href: "https://www.linkedin.com/in/vinay-kalacharla-2243252b9/", color: "#00a0dc" }
           ].map((link, i) => (
             <motion.a
               key={i}
