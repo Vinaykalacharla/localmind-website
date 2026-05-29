@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Send, Terminal, Sparkles } from "lucide-react";
+import { Mail, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 const GithubIcon = ({ size = 24 }: { size?: number }) => (
@@ -19,205 +19,187 @@ const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
-  };
-
-  const contactLinks = [
-    {
-      title: "Direct Email",
-      value: "localmindos@gmail.com",
-      icon: <Mail size={24} />,
-      href: "mailto:localmindos@gmail.com",
-      gradient: "from-[#ff4b4b] to-[#ff9090]"
-    },
-    {
-      title: "GitHub Developer",
-      value: "github.com/Vinaykalacharla",
-      icon: <GithubIcon size={24} />,
-      href: "https://github.com/Vinaykalacharla",
-      gradient: "from-[#333] to-[#888]"
-    },
-    {
-      title: "LinkedIn Network",
-      value: "linkedin.com/in/vinaykalacharla",
-      icon: <LinkedinIcon size={24} />,
-      href: "https://linkedin.com/in/vinaykalacharla",
-      gradient: "from-[#0077b5] to-[#00a0dc]"
-    }
-  ];
+  const getInputStyle = (id: string) => ({
+    background: "transparent",
+    border: "none",
+    borderBottom: focusedInput === id ? "3px solid #0071e3" : "3px dashed rgba(255,255,255,0.2)",
+    color: "white",
+    fontSize: "inherit",
+    fontFamily: "inherit",
+    fontWeight: 700,
+    outline: "none",
+    padding: "0.25rem 1rem",
+    margin: "0 0.5rem",
+    width: id === "message" ? "100%" : "280px",
+    maxWidth: id === "message" ? "800px" : "none",
+    transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+    boxShadow: focusedInput === id ? "0 20px 40px -10px rgba(0,113,227,0.3)" : "none"
+  });
 
   return (
-    <section style={{ padding: "8rem 2rem", position: "relative", zIndex: 10, display: "flex", justifyContent: "center" }}>
-      <div style={{ maxWidth: "1200px", width: "100%", display: "flex", flexDirection: "column", gap: "4rem" }}>
+    <section style={{ 
+      position: "relative", 
+      background: "#050505", 
+      overflow: "hidden", 
+      display: "flex", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      padding: "8rem 2rem", 
+      borderRadius: "48px 48px 0 0", 
+      marginTop: "4rem",
+      borderTop: "1px solid rgba(255,255,255,0.1)"
+    }}>
+      
+      {/* Intense Background Glow */}
+      <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translate(-50%, -50%)", width: "800px", height: "800px", background: "radial-gradient(circle, rgba(0,113,227,0.15) 0%, rgba(0,0,0,0) 70%)", filter: "blur(60px)", pointerEvents: "none", zIndex: 0 }} />
+
+      <div style={{ position: "relative", zIndex: 10, width: "100%", maxWidth: "1400px", display: "flex", flexDirection: "column", gap: "6rem" }}>
         
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8, type: "spring" }}
-          style={{ textAlign: "center" }}
-        >
-          <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 900, color: "var(--text-primary)", letterSpacing: "-0.04em", lineHeight: 1.1 }}>
-            Let's build <span style={{ background: "linear-gradient(135deg, #0071e3, #29c1d1)", WebkitBackgroundClip: "text", color: "transparent" }}>secure products</span> together.
-          </h2>
-        </motion.div>
-
-        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", alignItems: "stretch" }}>
-          
-          {/* Left: Contact Info */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
-            {contactLinks.map((link, i) => (
-              <motion.a
-                key={i}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, x: 10, backgroundColor: "rgba(255,255,255,1)", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1.5rem",
-                  padding: "1.5rem",
-                  background: "rgba(255,255,255,0.6)",
-                  backdropFilter: "blur(20px)",
-                  borderRadius: "20px",
-                  border: "1px solid rgba(0,0,0,0.05)",
-                  textDecoration: "none",
-                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-                  position: "relative",
-                  overflow: "hidden"
-                }}
-              >
-                <div style={{ width: "60px", height: "60px", borderRadius: "16px", background: "var(--bg-secondary)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-primary)" }}>
-                  {link.icon}
-                </div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                    {link.title}
-                  </span>
-                  <span style={{ fontSize: "1.125rem", fontWeight: 600, color: "var(--text-primary)" }}>
-                    {link.value}
-                  </span>
-                </div>
-              </motion.a>
-            ))}
-          </motion.div>
-
-          {/* Right: Inquiry Console */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50, rotateY: 15 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.4 }}
-            style={{ 
-              flex: "1 1 500px", 
-              background: "#121214", 
-              borderRadius: "24px", 
-              padding: "2rem",
-              border: "1px solid rgba(255,255,255,0.1)",
-              boxShadow: "0 32px 64px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1)",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              perspective: "1000px"
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "2rem", borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "1rem" }}>
-              <Terminal size={20} color="#0071e3" />
-              <span style={{ fontFamily: "'Fira Code', monospace", fontWeight: 600, letterSpacing: "0.1em", fontSize: "0.9rem", color: "#a1a1aa" }}>INQUIRY_CONSOLE.exe</span>
-              <div style={{ marginLeft: "auto", display: "flex", gap: "0.5rem" }}>
-                <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ef4444" }}></div>
-                <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#eab308" }}></div>
-                <div style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#22c55e" }}></div>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-              
-              <div style={{ position: "relative" }}>
-                <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#a1a1aa", marginBottom: "0.5rem" }}>Your Name</label>
-                <motion.input 
-                  onFocus={() => setFocusedInput("name")}
-                  onBlur={() => setFocusedInput(null)}
-                  animate={{ borderColor: focusedInput === "name" ? "#0071e3" : "rgba(255,255,255,0.1)", backgroundColor: focusedInput === "name" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.2)" }}
-                  type="text" 
-                  placeholder="Enter name" 
-                  style={{ width: "100%", padding: "1rem", borderRadius: "12px", outline: "none", color: "white", fontFamily: "inherit", fontSize: "1rem", transition: "all 0.3s ease" }} 
-                />
-              </div>
-
-              <div style={{ position: "relative" }}>
-                <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#a1a1aa", marginBottom: "0.5rem" }}>Your Email</label>
-                <motion.input 
-                  onFocus={() => setFocusedInput("email")}
-                  onBlur={() => setFocusedInput(null)}
-                  animate={{ borderColor: focusedInput === "email" ? "#0071e3" : "rgba(255,255,255,0.1)", backgroundColor: focusedInput === "email" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.2)" }}
-                  type="email" 
-                  placeholder="name@company.com" 
-                  style={{ width: "100%", padding: "1rem", borderRadius: "12px", outline: "none", color: "white", fontFamily: "inherit", fontSize: "1rem", transition: "all 0.3s ease" }} 
-                />
-              </div>
-
-              <div style={{ position: "relative" }}>
-                <label style={{ display: "block", fontSize: "0.75rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "#a1a1aa", marginBottom: "0.5rem" }}>Message</label>
-                <motion.textarea 
-                  onFocus={() => setFocusedInput("message")}
-                  onBlur={() => setFocusedInput(null)}
-                  animate={{ borderColor: focusedInput === "message" ? "#0071e3" : "rgba(255,255,255,0.1)", backgroundColor: focusedInput === "message" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.2)" }}
-                  placeholder="Hey Vinay, let's discuss your AIML + Full Stack expertise..." 
-                  style={{ width: "100%", padding: "1rem", borderRadius: "12px", outline: "none", color: "white", fontFamily: "inherit", fontSize: "1rem", minHeight: "120px", resize: "none", transition: "all 0.3s ease" }} 
-                />
-              </div>
-
-              <motion.button
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0,113,227,0.5)" }}
-                whileTap={{ scale: 0.95 }}
-                style={{
-                  marginTop: "1rem",
-                  width: "100%",
-                  padding: "1rem",
-                  borderRadius: "12px",
-                  background: "linear-gradient(135deg, #0071e3, #29c1d1)",
-                  color: "white",
-                  border: "none",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem"
-                }}
-              >
-                <Sparkles size={18} />
-                Dispatch Message
-                <Send size={18} style={{ marginLeft: "0.5rem" }} />
-              </motion.button>
-
-            </div>
-          </motion.div>
-
+        {/* Floating Action Pills */}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem" }}>
+          {[
+            { name: "localmindos@gmail.com", icon: <Mail size={22} />, href: "mailto:localmindos@gmail.com", color: "#ff4b4b" },
+            { name: "github.com/Vinaykalacharla", icon: <GithubIcon size={22} />, href: "https://github.com/Vinaykalacharla", color: "#ffffff" },
+            { name: "linkedin.com/in/vinaykalacharla", icon: <LinkedinIcon size={22} />, href: "https://linkedin.com/in/vinaykalacharla", color: "#00a0dc" }
+          ].map((link, i) => (
+            <motion.a
+              key={i}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, type: "spring", stiffness: 120, damping: 14 }}
+              whileHover={{ 
+                scale: 1.05, 
+                backgroundColor: link.color, 
+                color: "#050505", 
+                borderColor: link.color,
+                boxShadow: `0 0 40px ${link.color}60`
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                padding: "1.25rem 2.5rem",
+                borderRadius: "100px",
+                border: "1px solid rgba(255,255,255,0.15)",
+                background: "rgba(255,255,255,0.02)",
+                color: "white",
+                textDecoration: "none",
+                fontWeight: 700,
+                fontSize: "1.125rem",
+                backdropFilter: "blur(20px)",
+                transition: "background 0.3s ease, color 0.3s ease, border-color 0.3s ease"
+              }}
+            >
+              {link.icon}
+              {link.name}
+            </motion.a>
+          ))}
         </div>
+
+        {/* Massive Conversational Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+          style={{
+            background: "linear-gradient(180deg, rgba(20, 20, 22, 0.8) 0%, rgba(10, 10, 12, 0.9) 100%)",
+            backdropFilter: "blur(60px)",
+            borderRadius: "40px",
+            padding: "clamp(3rem, 8vw, 6rem)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 40px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.15)",
+            position: "relative",
+            overflow: "hidden"
+          }}
+        >
+          {/* Decorative Corner Element */}
+          <div style={{ position: "absolute", top: 0, right: 0, width: "200px", height: "200px", background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" }} />
+
+          <div style={{ 
+            fontSize: "clamp(2rem, 5vw, 4rem)", 
+            fontWeight: 600, 
+            color: "#a1a1aa", 
+            lineHeight: 1.8, 
+            textAlign: "left",
+            letterSpacing: "-0.02em"
+          }}>
+            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }}>Hey Vinay,</motion.span> <br/>
+            
+            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.4 }}>I'm</motion.span> 
+            <input 
+              type="text" 
+              placeholder="Your Name" 
+              style={getInputStyle("name")} 
+              value={formData.name} 
+              onFocus={() => setFocusedInput("name")}
+              onBlur={() => setFocusedInput(null)}
+              onChange={e => setFormData({...formData, name: e.target.value})} 
+            />. <br/>
+            
+            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5 }}>You can reach me at</motion.span> 
+            <input 
+              type="email" 
+              placeholder="name@company.com" 
+              style={getInputStyle("email")} 
+              value={formData.email} 
+              onFocus={() => setFocusedInput("email")}
+              onBlur={() => setFocusedInput(null)}
+              onChange={e => setFormData({...formData, email: e.target.value})} 
+            />. <br/>
+            
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.6 }} style={{ marginTop: "2rem" }}>
+              I'd love to chat about <br/>
+              <input 
+                type="text" 
+                placeholder="AIML + Full Stack expertise..." 
+                style={getInputStyle("message")} 
+                value={formData.message} 
+                onFocus={() => setFocusedInput("message")}
+                onBlur={() => setFocusedInput(null)}
+                onChange={e => setFormData({...formData, message: e.target.value})} 
+              />.
+            </motion.div>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8, type: "spring" }}
+            style={{ marginTop: "5rem", display: "flex", justifyContent: "flex-end" }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 60px rgba(255,255,255,0.4)" }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                padding: "1.5rem 4rem",
+                borderRadius: "100px",
+                background: "white",
+                color: "#050505",
+                border: "none",
+                fontWeight: 900,
+                fontSize: "1.5rem",
+                letterSpacing: "-0.02em",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem"
+              }}
+            >
+              <Sparkles size={28} />
+              Send It
+              <Send size={24} style={{ marginLeft: "0.5rem" }} />
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
