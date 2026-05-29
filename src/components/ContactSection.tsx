@@ -1,12 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Send, Terminal, Sparkles } from "lucide-react";
+import { Mail, Send, Terminal, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 const GithubIcon = ({ size = 24 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.24c3-.34 6-1.53 6-6.76a5.2 5.2 0 0 0-1.5-3.8 5.2 5.2 0 0 0 .1-3.8s-1.2-.4-3.9 1.4a13.3 13.3 0 0 0-7 0C6.2 1.6 5 2 5 2a5.2 5.2 0 0 0 .1 3.8A5.2 5.2 0 0 0 3 9.6c0 5.23 3 6.42 6 6.76a4.8 4.8 0 0 0-1 3.24v4" />
+  </svg>
+);
+
+const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
 
@@ -44,7 +52,7 @@ export function ContactSection() {
     {
       title: "LinkedIn Network",
       value: "linkedin.com/in/vinaykalacharla",
-      icon: <Linkedin size={24} />,
+      icon: <LinkedinIcon size={24} />,
       href: "https://linkedin.com/in/vinaykalacharla",
       gradient: "from-[#0077b5] to-[#00a0dc]"
     }
