@@ -113,9 +113,9 @@ export function AnimatedHeroApp() {
 
               <div style={{ color: "#1d1d1f", fontSize: "0.95rem", lineHeight: 1.6 }}>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}>LocalMind OS uses </motion.span>
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4, background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>AES-GCM</motion.span>
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4 }} style={{ background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>AES-GCM</motion.span>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6 }}> to encrypt all persisted runtime artifacts. The encryption key is derived from your passphrase using the </motion.span>
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8, background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>Scrypt</motion.span>
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8 }} style={{ background: "rgba(0,113,227,0.1)", padding: "0 4px", borderRadius: "4px" }}>Scrypt</motion.span>
                 <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3.0 }}> algorithm.</motion.span>
               </div>
             </div>
