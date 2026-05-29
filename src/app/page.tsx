@@ -254,6 +254,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Comparison Table */}
+      <section style={{ padding: "8rem 2rem", display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 10 }}>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 800, color: "var(--text-primary)", marginBottom: "4rem", textAlign: "center", letterSpacing: "-0.03em" }}
+        >
+          Why Local-First AI is the future.
+        </motion.h2>
+
+        <div style={{ maxWidth: "1000px", width: "100%", background: "rgba(255,255,255,0.7)", backdropFilter: "blur(40px)", borderRadius: "24px", border: "1px solid var(--border-light)", boxShadow: "0 24px 48px rgba(0,0,0,0.05)", overflow: "hidden" }}>
+          {/* Header Row */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderBottom: "1px solid var(--border-medium)", background: "rgba(250,250,252,0.9)", padding: "1.5rem", gap: "1rem" }}>
+            <div style={{ fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em", fontSize: "0.875rem", display: "flex", alignItems: "center" }}>Feature Set</div>
+            <div style={{ fontWeight: 800, color: "var(--accent-blue)", fontSize: "1.125rem", display: "flex", alignItems: "center", gap: "0.5rem" }}><Brain size={20} /> LocalMind OS</div>
+            <div style={{ fontWeight: 800, color: "var(--text-secondary)", fontSize: "1.125rem", display: "flex", alignItems: "center", gap: "0.5rem" }}><CloudOff size={20} /> Cloud-Based AI</div>
+          </div>
+          
+          {/* Rows */}
+          {[
+            { feature: "Privacy & Data Security", local: "100% Secure (Local user-space storage)", cloud: "Exposed (Subject to terms & server leaks)" },
+            { feature: "Offline Capabilities", local: "Fully Functional (Air-gapped operation)", cloud: "Disabled (Requires persistent internet)" },
+            { feature: "Operational Cost", local: "Zero Cost (Runs on local GPU/CPU)", cloud: "Subscription / Usage API Billings" },
+            { feature: "Inference Control", local: "Full Ownership (Custom parameters & weights)", cloud: "Restricted (Model behavior updates arbitrary)" },
+            { feature: "Hardware Utilization", local: "Direct (Optimized via Vulkan/Metal runtimes)", cloud: "Indirect (Requires high bandwidth)" },
+          ].map((row, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.8 }}
+              transition={{ delay: i * 0.1, duration: 0.5, type: "spring" }}
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", padding: "1.5rem", gap: "1rem", borderBottom: i === 4 ? "none" : "1px solid var(--border-light)", background: i % 2 === 0 ? "transparent" : "rgba(250,250,252,0.4)", transition: "background 0.2s ease" }}
+            >
+              <div style={{ fontWeight: 700, color: "var(--text-primary)", display: "flex", alignItems: "center", fontSize: "0.95rem" }}>{row.feature}</div>
+              <div style={{ fontWeight: 600, color: "var(--accent-blue)", display: "flex", alignItems: "center", fontSize: "0.95rem", paddingRight: "1rem" }}>{row.local}</div>
+              <div style={{ fontWeight: 500, color: "var(--text-secondary)", display: "flex", alignItems: "center", fontSize: "0.95rem" }}>{row.cloud}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
       <section className={styles.finalCta}>
         <motion.div
